@@ -14,12 +14,14 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class TroopScan extends Activity implements ZXingScannerView.ResultHandler {
     private static final String TAG = "";
     private ZXingScannerView mScannerView;
+    private CharSequence mTitle;
 
     @Override
     public void onCreate(Bundle state) {
+        getActionBar().setTitle("Scanneur de troop");
         super.onCreate(state);
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
-        setContentView(mScannerView);                // Set the scanner view as the content view
+        setContentView(mScannerView);    // Set the scanner view as the content view
     }
 
     @Override

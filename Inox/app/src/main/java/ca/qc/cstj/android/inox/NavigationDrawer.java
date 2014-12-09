@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -21,7 +22,10 @@ import android.widget.TextView;
 
 
 public class NavigationDrawer extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks,
+        InventaireFragment.OnFragmentInteractionListener,
+        ExplorationFragment.OnFragmentInteractionListener
+{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -40,7 +44,7 @@ public class NavigationDrawer extends Activity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+        mTitle = "Inventaire";
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -58,14 +62,21 @@ public class NavigationDrawer extends Activity
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, InventaireFragment.newInstance(position))
                         .commit();
+                mTitle = "Inventaire";
+                break;
             case 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .replace(R.id.container, ExplorationFragment.newInstance(position + 1))
                         .commit();
+                mTitle = "Explorations";
+                break;
             case 2:
                 Intent intent = new Intent(getApplicationContext(), TroopScan.class);
                 startActivity(intent);
                 break;
+            case 3:
+                mTitle = "Déconnexion";
+                //TODO. Faire les fonctions de déconnexion
 
         }
     }
@@ -77,9 +88,6 @@ public class NavigationDrawer extends Activity
                 break;
             case 2:
                 mTitle = getString(R.string.title_explorations);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_scanner);
                 break;
         }
     }
@@ -115,6 +123,11 @@ public class NavigationDrawer extends Activity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     /**

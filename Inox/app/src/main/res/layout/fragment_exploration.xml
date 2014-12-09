@@ -2,12 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ca.qc.cstj.android.inox.InventaireFragment">
+    tools:context="ca.qc.cstj.android.inox.ExplorationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lstInventaire"></ListView>
-
+        android:id="@+id/lstExplorations"></ListView>
 </FrameLayout>

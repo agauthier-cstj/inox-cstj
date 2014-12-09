@@ -105,6 +105,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_inventaire),
                         getString(R.string.title_explorations),
                         getString(R.string.title_scanner),
+                        "Déconnexion",
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;

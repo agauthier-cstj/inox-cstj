@@ -9,7 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class InventaireFragment extends Fragment {
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link ExplorationFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link ExplorationFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ *
+ */
+public class ExplorationFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -17,14 +27,14 @@ public class InventaireFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     // TODO: Rename and change types and number of parameters
-    public static InventaireFragment newInstance(int sectionNumber) {
-        InventaireFragment fragment = new InventaireFragment();
+    public static ExplorationFragment newInstance(int sectionNumber) {
+        ExplorationFragment fragment = new ExplorationFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
-    public InventaireFragment() {
+    public ExplorationFragment() {
         // Required empty public constructor
     }
 
@@ -32,6 +42,7 @@ public class InventaireFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+
         }
     }
 
@@ -39,7 +50,7 @@ public class InventaireFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inventaire, container, false);
+        return inflater.inflate(R.layout.fragment_exploration, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -52,8 +63,12 @@ public class InventaireFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((NavigationDrawer) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -72,8 +87,6 @@ public class InventaireFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-
-    //Interface obligatoire à avoir  - Anthony Gauthier
     public interface OnFragmentInteractionListener {
         public void onFragmentInteraction(Uri uri);
     }
