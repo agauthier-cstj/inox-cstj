@@ -29,12 +29,18 @@ import com.koushikdutta.ion.Response;
 
 import org.apache.http.HttpStatus;
 
+<<<<<<< HEAD
 import java.io.FileOutputStream;
+=======
+>>>>>>> origin/master
 import java.util.ArrayList;
 
 import ca.qc.cstj.android.inox.models.Explorateur;
 import ca.qc.cstj.android.inox.services.ServicesURI;
+<<<<<<< HEAD
 import ca.qc.cstj.android.inox.helpers.VarGlobales;
+=======
+>>>>>>> origin/master
 
 
 public class MainActivity extends Activity
@@ -47,6 +53,11 @@ public class MainActivity extends Activity
     EditText txtMdp;
 
     ProgressDialog progressDialog;
+<<<<<<< HEAD
+=======
+
+    Explorateur explorateur;
+>>>>>>> origin/master
 
     private CharSequence mTitle;
     @Override
@@ -85,6 +96,7 @@ public class MainActivity extends Activity
                                 progressDialog.dismiss();
                                 //200 - OK - Anthony
                                 if(jsonObjectResponse.getHeaders().getResponseCode() == HttpStatus.SC_OK){
+<<<<<<< HEAD
                                     //On sauvegarde le href dans le fichier interne puis si cela fonctionne, on affiche l'inventaire
                                     try {
                                         //On sauvegarde l'explorateur dans la variable globale
@@ -109,6 +121,12 @@ public class MainActivity extends Activity
                                         txtMdp.setText("");
                                         txtUsager.setText("");
                                     }
+=======
+                                    Toast message = Toast.makeText(ctx, "Connexion réussie!", Toast.LENGTH_SHORT);
+                                    message.show();
+                                    Intent intent = new Intent(getApplicationContext(), NavigationDrawer.class);
+                                    startActivity(intent);
+>>>>>>> origin/master
                                 }
                                 //401 - Mauvais login - Anthony
                                 else if(jsonObjectResponse.getHeaders().getResponseCode() == HttpStatus.SC_UNAUTHORIZED){
@@ -128,7 +146,11 @@ public class MainActivity extends Activity
                                     message.show();
                                 }
                                 //500 - Internal error - Anthony
+<<<<<<< HEAD
                                 else if(jsonObjectResponse.getHeaders().getResponseCode() == HttpStatus.SC_INTERNAL_SERVER_ERROR)
+=======
+                                else
+>>>>>>> origin/master
                                 {
                                     String description = jsonObjectResponse.getResult().get("description").toString();
                                     Toast message = Toast.makeText(ctx, description, Toast.LENGTH_SHORT);
@@ -136,6 +158,7 @@ public class MainActivity extends Activity
                                     txtUsager.setText("");
                                     message.show();
                                 }
+<<<<<<< HEAD
                                 //Tout autre problèmes - Anthony
                                 else
                                 {
@@ -144,6 +167,8 @@ public class MainActivity extends Activity
                                     txtUsager.setText("");
                                     message.show();
                                 }
+=======
+>>>>>>> origin/master
                             }
                         });
             }
