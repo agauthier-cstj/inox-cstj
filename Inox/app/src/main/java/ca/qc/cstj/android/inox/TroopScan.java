@@ -5,9 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.google.zxing.Result;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.Response;
 
+import ca.qc.cstj.android.inox.services.ServicesURI;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
@@ -39,8 +45,21 @@ public class TroopScan extends Activity implements ZXingScannerView.ResultHandle
 
     @Override
     public void handleResult(Result rawResult) {
-        // Do something with the result here
-        Log.v(TAG, rawResult.getText()); // Prints scan results
-        Log.v(TAG, rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
+        Ion.with(getApplicationContext())
+                .load(ServicesURI.SCANNING_SERVICE_URI+ "/"+ rawResult.getText())
+                .asJsonObject()
+                .withResponse()
+                .setCallback(new FutureCallback<Response<JsonObject>>() {
+                    @Override
+                    public void onCompleted(Exception e, Response<JsonObject> jsonObjectResponse) {
+                        if(jsonObjectResponse.getResult() != null) {
+                            Toast message = Toast.makeText(getApplicationContext(), jsonObjectResponse.getResult().toString(), Toast.LENGTH_SHORT);
+                            message.show();
+                        } else {
+                            Toast message = Toast.makeText(getApplicationContext(), "Erreur lors de la requête", Toast.LENGTH_SHORT);
+                            message.show();
+                        }
+                    }
+                });
     }
 }

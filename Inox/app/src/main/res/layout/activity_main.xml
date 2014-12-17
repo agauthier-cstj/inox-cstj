@@ -25,11 +25,14 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:id="@+id/txtUsager"
         android:hint="@string/hintUser"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:id="@+id/txtMdp"
+        android:inputType="textPassword"
         android:hint="@string/hintPasswd"/>
 
     <!--Ligne vide-->

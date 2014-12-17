@@ -1,4 +1,4 @@
-package ca.qc.cstj.android.movinformation.helpers;
+package ca.qc.cstj.android.inox.helpers;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;

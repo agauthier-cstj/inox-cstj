@@ -20,6 +20,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import ca.qc.cstj.android.inox.helpers.VarGlobales;
+
 
 public class NavigationDrawer extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks,
@@ -76,7 +78,10 @@ public class NavigationDrawer extends Activity
                 break;
             case 3:
                 mTitle = "Déconnexion";
-                //TODO. Faire les fonctions de déconnexion
+                VarGlobales.explorateurConnecte.setUsager("");
+                VarGlobales.explorateurConnecte.setHref("");
+                Intent intention = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intention);
 
         }
     }
